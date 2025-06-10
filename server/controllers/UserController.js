@@ -2,7 +2,8 @@ import {Webhook} from 'svix'
 import userModel from '../models/userModel.js'
 
 //API controller function to manage clerk user with the database 
-// http://localhost:4000/api/user/webhooks
+
+ //http://localhost:4000/api/user/webhooks
 
 const clerkWebhooks = async(req,res) => {
     try{
@@ -40,7 +41,7 @@ const clerkWebhooks = async(req,res) => {
                 const userData = {
                     email: data.email_addresses[0].email_address,
                     firstName: data.first_name,
-                    lastName: data.second_name,
+                    lastName: data.last_name,
                     photo: data.image_url
                 }
 
