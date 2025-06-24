@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import connectDB from './configs/mongodb.js'
 import userRouter from './routes/userRoutes.js'
-import { clerkWebhooks } from './controllers/UserController.js'
+import imageRouter from './routes/imageRoutes.js'
 
 
 //App config
@@ -15,8 +15,8 @@ await connectDB()
 app.use(express.json())
 app.use(cors())
 
-//app.post('/api/webhooks/clerk', clerkWebhooks)
 app.get('/', (req,res) => res.send("API working"))
 app.use('/api/user', userRouter)
+app.use('/api/image', imageRouter)
 
 app.listen(PORT, () =>  console.log("Server running on the port "+PORT))
