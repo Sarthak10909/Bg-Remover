@@ -78,7 +78,7 @@ import userModel from "../models/userModel.js";
 //         res.json({success:false,message:error.message})
 //     }
 // }
-console.log("before")
+console.log("before");
 const clerkWebhooks = async (req, res) => {
   console.log("🚨 WEBHOOK CALLED AT:", new Date().toISOString());
   try {
@@ -105,7 +105,14 @@ const clerkWebhooks = async (req, res) => {
         };
         console.log("Attempting to create user with data:", userData);
 
-        await userModel.create(userData);
+        await userModel.findOneAndUpdate(
+          { clerkId: data.id }, // Find by clerkId
+          userData, // Update with this data
+          {
+            upsert: true, // Create if doesn't exist
+            new: true, // Return updated document
+          }
+        );
         res.json({ success: true });
         return; // CRITICAL: Add this
       }
@@ -124,7 +131,7 @@ const clerkWebhooks = async (req, res) => {
       }
 
       case "user.deleted": {
-        console.log("deleted")
+        console.log("deleted");
         await userModel.findOneAndDelete({ clerkId: data.id });
         res.json({ success: true });
         return; // CRITICAL: Add this
