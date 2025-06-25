@@ -103,18 +103,28 @@ const clerkWebhooks = async (req, res) => {
           photo: data.image_url,
           creditBalance: 5,
         };
-        console.log("Attempting to create user with data:", userData);
 
-        await userModel.findOneAndUpdate(
-          { clerkId: data.id }, // Find by clerkId
-          userData, // Update with this data
-          {
-            upsert: true, // Create if doesn't exist
-            new: true, // Return updated document
+        try {
+          // Try to find and update first
+          const existingUser = await userModel.findOneAndUpdate(
+            { clerkId: data.id },
+            userData,
+            { new: true }
+          );
+
+          if (!existingUser) {
+            // If no existing user, create new one
+            await userModel.create(userData);
           }
-        );
+
+          console.log("User created/updated successfully");
+        } catch (dbError) {
+          console.log("Database error:", dbError.message);
+          // Don't throw error to prevent webhook retries
+        }
+
         res.json({ success: true });
-        return; // CRITICAL: Add this
+        return;
       }
 
       case "user.updated": {
