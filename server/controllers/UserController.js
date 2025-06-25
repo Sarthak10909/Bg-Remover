@@ -96,7 +96,7 @@ const clerkWebhooks = async (req, res) => {
       case "user.created": {
         console.log("Webhook received for user creation:", data.id);
         const userData = {
-          clerkId: data.id,
+          clerkID: data.id,
           email: data.email_addresses[0].email_address,
           firstName: data.first_name,
           lastName: data.last_name,
@@ -107,7 +107,7 @@ const clerkWebhooks = async (req, res) => {
         try {
           // Try to find and update first
           const existingUser = await userModel.findOneAndUpdate(
-            { clerkId: data.id },
+            { clerkID: data.id },
             userData,
             { new: true }
           );
@@ -135,14 +135,14 @@ const clerkWebhooks = async (req, res) => {
           photo: data.image_url,
         };
 
-        await userModel.findOneAndUpdate({ clerkId: data.id }, userData);
+        await userModel.findOneAndUpdate({ clerkID: data.id }, userData);
         res.json({ success: true });
         return; // CRITICAL: Add this
       }
 
       case "user.deleted": {
         console.log("deleted");
-        await userModel.findOneAndDelete({ clerkId: data.id });
+        await userModel.findOneAndDelete({ clerkID: data.id });
         res.json({ success: true });
         return; // CRITICAL: Add this
       }
@@ -160,9 +160,9 @@ const clerkWebhooks = async (req, res) => {
 
 const userCredits = async (req, res) => {
   try {
-    const { clerkId } = req.body;
+    const { clerkID } = req.body;
 
-    const userData = await userModel.findOne({ clerkId });
+    const userData = await userModel.findOne({ clerkID });
 
     res.json({ success: true, credits: userData.creditBalance });
   } catch (error) {
