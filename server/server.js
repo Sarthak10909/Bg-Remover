@@ -16,6 +16,15 @@ app.use(express.json())
 app.use(cors())
 
 app.get('/', (req,res) => res.send("API working"))
+app.use((req, res, next) => {
+    if (req.path.includes('/api/user/webhooks')) {
+        console.log("🔥 WEBHOOK REQUEST RECEIVED:");
+        console.log("Method:", req.method);
+        console.log("Path:", req.path);
+        console.log("Headers:", req.headers);
+    }
+    next();
+});
 app.use('/api/user', userRouter)
 app.use('/api/image', imageRouter)
 

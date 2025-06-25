@@ -78,10 +78,9 @@ import userModel from "../models/userModel.js";
 //         res.json({success:false,message:error.message})
 //     }
 // }
-
-
-
+console.log("before")
 const clerkWebhooks = async (req, res) => {
+  console.log("🚨 WEBHOOK CALLED AT:", new Date().toISOString());
   try {
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SIGNING_SECRET);
 
@@ -106,19 +105,11 @@ const clerkWebhooks = async (req, res) => {
         };
         console.log("Attempting to create user with data:", userData);
 
-        try {
-          const result = await userModel.create(userData);
-          console.log("User created successfully:", result._id);
-      } catch (dbError) {
-          console.log("Database creation failed:", dbError.message);
-          throw dbError;
-      }
-
-        // await userModel.create(userData);
+        await userModel.create(userData);
         res.json({ success: true });
         return; // CRITICAL: Add this
       }
-      
+
       case "user.updated": {
         const userData = {
           email: data.email_addresses[0].email_address,
@@ -133,6 +124,7 @@ const clerkWebhooks = async (req, res) => {
       }
 
       case "user.deleted": {
+        console.log("deleted")
         await userModel.findOneAndDelete({ clerkId: data.id });
         res.json({ success: true });
         return; // CRITICAL: Add this
@@ -149,20 +141,17 @@ const clerkWebhooks = async (req, res) => {
   }
 };
 
-const userCredits = async(req, res) => {
-      try{
-  
-          const {clerkId} = req.body
-  
-          const userData = await userModel.findOne({clerkId})
-  
-          res.json({success : true, credits: userData.creditBalance})
-  
-      }catch(error){
-          console.log(error.message)
-          console.log("this is the error")
-          res.json({success:false,message:error.message})
-      }
+const userCredits = async (req, res) => {
+  try {
+    const { clerkId } = req.body;
+
+    const userData = await userModel.findOne({ clerkId });
+
+    res.json({ success: true, credits: userData.creditBalance });
+  } catch (error) {
+    console.log(error.message);
+    res.json({ success: false, message: error.message });
   }
+};
 
 export { clerkWebhooks, userCredits };
