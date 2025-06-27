@@ -14,7 +14,7 @@ const Steps = () => {
                 <img className = 'max-w-9' src={asset.upload_icon} alt="" />
                 <div>
                     <p className = 'text-xl font-medium'>Upload image</p>
-                    <p className = 'text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br/> This is a demo..</p>
+                    <p className = 'text-sm text-neutral-500 mt-1'>Select any image to get started. <br/> Supports JPG, PNG.</p>
                 </div>
             </div>
 
@@ -22,7 +22,7 @@ const Steps = () => {
                 <img className = 'max-w-9' src={asset.remove_bg_icon} alt="" />
                 <div>
                     <p className = 'text-xl font-medium'>Remove background</p>
-                    <p className = 'text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br/> This is a demo..</p>
+                    <p className = 'text-sm text-neutral-500 mt-1'>Click to erase the background. <br/>Powered by AI.</p>
                 </div>
             </div>
 
@@ -30,7 +30,7 @@ const Steps = () => {
                 <img className = 'max-w-9' src={asset.download_icon} alt="" />
                 <div>
                     <p className = 'text-xl font-medium'>Download image</p>
-                    <p className = 'text-sm text-neutral-500 mt-1'>This is a demo text, will replace it later. <br/> This is a demo..</p>
+                    <p className = 'text-sm text-neutral-500 mt-1'>Save your edited image now.<br/> No background! </p>
                 </div>
             </div>
         </div>

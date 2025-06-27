@@ -11,9 +11,12 @@ import image_wo_bg from './image_wo_bg.png'
 import facebook_icon from './facebook_icon.svg'
 import google_plus_icon from './google_plus_icon.svg'
 import twitter_icon from './twitter_icon.svg'
-import profile_img_1 from './profile_img_1.png'
-import profile_img_2 from './profile_img_2.png'
 import credit_icon from './credit_icon.png'
+import default_profile from './default_profile.png'
+import snipItFirst from './snipItFirst.png'
+import snipItSecond from './snipItSecond.png'
+import snipItSecondwb from './snipItSecondwb.png'
+import snipItLogo from './snipItLogo.png'
 
 export const asset = {
     logo,
@@ -29,23 +32,27 @@ export const asset = {
     google_plus_icon,
     twitter_icon,
     upload_btn_icon,
-    credit_icon
+    credit_icon,
+    snipItFirst,
+    snipItSecond,
+    snipItSecondwb,
+    snipItLogo
 }
 
 export const testimonialsData = [
     {
         id: 1,
-        text: "I've been using bg.removal for nearly two years, primarily for Instagram, and it has been incredibly user-friendly, making my work much easier.",
-        author: "Richard Nelson",
-        image: profile_img_1,
+        text: "I've been using Snip.it for nearly two years, primarily for Instagram, and it has been incredibly user-friendly, making my work much easier.",
+        author: "Arjun Sharma",
+        image: default_profile,
         jobTitle:'Web Developer'
     },
     {
         id: 2,
-        text: "I've been using bg.removal for nearly 6 months, I had a fantastic experience. The quality is top-notch. I recommend others to try this app.",
-        author: "Donald Jackman",
-        image: profile_img_2,
-        jobTitle:'UI Deginer'
+        text: "As a freelance graphic designer, Snip.it has been a game-changer. The quality is exceptional and the processing speed is lightning fast. Highly recommended!",
+        author: "Kavya Reddy",
+        image: default_profile,
+        jobTitle:'Graphic Designer'
     },
 ];
 

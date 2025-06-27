@@ -11,8 +11,7 @@ export const Navbar = () => {
   const {credit, loadCreditsData} = useContext(AppContext) 
 
   const navigate = useNavigate()                 //hook
-   
-
+  
   useEffect(() => {
     if(isSignedIn){
       loadCreditsData()
@@ -22,7 +21,7 @@ export const Navbar = () => {
   return (
     <div className = 'flex items-centre justify-between mx-4 py-3 lg:mx-44 '>
 
-      <Link to = '/'><img className = 'w-32 sm:w-44' src={asset.logo} alt="" /></Link>
+      <Link to = '/'><img className = 'w-32 sm:w-44' src={asset.snipItLogo} alt="" /></Link>
         {
           isSignedIn 
           ? <div className = 'flex items-center gap-2 sm:gap-3'>
