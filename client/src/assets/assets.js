@@ -17,6 +17,7 @@ import snipItFirst from './snipItFirst.png'
 import snipItSecond from './snipItSecond.png'
 import snipItSecondwb from './snipItSecondwb.png'
 import snipItLogo from './snipItLogo.png'
+import favicon from './favicon.svg'
 
 export const asset = {
     logo,
@@ -36,7 +37,8 @@ export const asset = {
     snipItFirst,
     snipItSecond,
     snipItSecondwb,
-    snipItLogo
+    snipItLogo,
+    favicon
 }
 
 export const testimonialsData = [
@@ -59,19 +61,19 @@ export const testimonialsData = [
 export const plans = [
     {
       id: 'Basic',
-      price: 10,
+      price: 50,
       credits: 100,
       desc: 'Best for personal use.'
     },
     {
       id: 'Advanced',
-      price: 50,
+      price: 250,
       credits: 500,
       desc: 'Best for business use.'
     },
     {
       id: 'Business',
-      price: 250,
+      price: 2000,
       credits: 5000,
       desc: 'Best for enterprise use.'
     },

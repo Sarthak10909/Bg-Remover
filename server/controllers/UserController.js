@@ -80,7 +80,6 @@ import userModel from "../models/userModel.js";
 // }
 console.log("before");
 const clerkWebhooks = async (req, res) => {
-  console.log("🚨 WEBHOOK CALLED AT:", new Date().toISOString());
   try {
     const whook = new Webhook(process.env.CLERK_WEBHOOK_SIGNING_SECRET);
 
@@ -141,7 +140,6 @@ const clerkWebhooks = async (req, res) => {
       }
 
       case "user.deleted": {
-        console.log("deleted");
         await userModel.findOneAndDelete({ clerkID: data.id });
         res.json({ success: true });
         return; // CRITICAL: Add this
